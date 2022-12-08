@@ -1,0 +1,25 @@
+version: "3.3"
+services:
+    toolbox_node:
+        container_name: toolbox_node
+        image: node:14-slim
+        tty: true
+        working_dir: /home/node
+        volumes:
+            - ./node:/home/node
+        ports:
+          - 9020:9020
+    toolbox_react:
+        container_name: toolbox_react
+        image: node:16-slim
+        tty: true
+        working_dir: /home/node
+        volumes:
+            - ./react:/home/node
+        depends_on:
+            - toolbox_node
+        ports:
+          - 3000:3000
+networks:
+    default:
+    
